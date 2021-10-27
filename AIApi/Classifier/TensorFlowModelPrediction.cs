@@ -9,7 +9,7 @@ namespace AIApi.Classifier
     public class TensorFlowModelPrediction : TensorFlowPredictionBase
     {
         private readonly AppSettings _settings;
-        private readonly IHostingEnvironment _environment;
+        private readonly IWebHostEnvironment _environment;
 
         public static readonly TensorFlowPredictionSettings Settings = new TensorFlowPredictionSettings()
         {
@@ -20,7 +20,7 @@ namespace AIApi.Classifier
             Threshold = 0.9f
         };
 
-        public TensorFlowModelPrediction(IOptionsSnapshot<AppSettings> settings, IHostingEnvironment environment)
+        public TensorFlowModelPrediction(IOptionsSnapshot<AppSettings> settings, IWebHostEnvironment environment)
         {
             _settings = settings.Value;
             _environment = environment;

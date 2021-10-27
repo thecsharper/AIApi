@@ -13,7 +13,7 @@ namespace AIApi.Classifier
     public class TensorFlowInceptionPrediction : TensorFlowPredictionBase
     {
         private readonly AppSettings _settings;
-        private readonly IHostingEnvironment _environment;
+        private readonly IWebHostEnvironment _environment;
 
         public static readonly TensorFlowPredictionSettings Settings = new TensorFlowPredictionSettings()
         {
@@ -24,7 +24,7 @@ namespace AIApi.Classifier
             Threshold = 0.3f
         };
 
-        public TensorFlowInceptionPrediction(IOptionsSnapshot<AppSettings> settings, IHostingEnvironment environment)
+        public TensorFlowInceptionPrediction(IOptionsSnapshot<AppSettings> settings, IWebHostEnvironment environment)
         {
             _settings = settings.Value;
             _environment = environment;

@@ -11,7 +11,7 @@ namespace AIApi.Classifier
         private readonly Dictionary<Approaches, IClassifier> models;
         private readonly Approaches defaultModel;
 
-        public TensorFlowPredictionStrategy(IOptionsSnapshot<AppSettings> settings, IHostingEnvironment environment)
+        public TensorFlowPredictionStrategy(IOptionsSnapshot<AppSettings> settings, IWebHostEnvironment environment)
         {
             object parseDefaultModel;
             defaultModel =
