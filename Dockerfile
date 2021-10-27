@@ -30,6 +30,7 @@ RUN dotnet publish "AIApi.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+# Hack to fix tensorflow library name issue
 RUN cp /app/bin/Debug/net5.0/runtimes/linux/libtensorflow.so /app/bin/Debug/net5.0/runtimes/linux/libtensorflow.so.1
 RUN cp /app/bin/Debug/net5.0/runtimes/linux/libtensorflow_framework.so.1 /app/bin/Debug/net5.0/runtimes/linux/libtensorflow_framework.so.1
 ENTRYPOINT ["dotnet", "AIApi.dll"]
