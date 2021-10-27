@@ -1,6 +1,6 @@
 # Building the application
 
-The application can be built in Debug or Release mode and run directly from Visual Studio using either Docker or IIS Express. To run the application, select the desired Build or Release configuration and then run the EventsApi project. 
+The application can be built in Debug or Release mode and run directly from Visual Studio using either Docker or IIS Express. To run the application, select the desired Build or Release configuration and then run the AIApi project. 
 
 # Running tests
 
