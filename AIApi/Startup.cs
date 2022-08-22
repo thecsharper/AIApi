@@ -45,8 +45,7 @@ namespace AIApi
             services.AddHttpClient("ThirdParty", c =>
             {
                 c.BaseAddress = new Uri("http://localhost");
-            }).AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(5, _ => TimeSpan.FromMilliseconds(500)
-           ));
+            }).AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(5, _ => TimeSpan.FromMilliseconds(500)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

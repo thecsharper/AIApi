@@ -2,7 +2,8 @@
 using System.IO;
 using System.IO.Compression;
 using System.Net;
-
+using System.Net.Http;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Options;
 
@@ -14,6 +15,7 @@ namespace AIApi.Classifier
     {
         private readonly AppSettings _settings;
         private readonly IWebHostEnvironment _environment;
+        private readonly IHttpClientFactory _httpClient;
 
         public static readonly TensorFlowPredictionSettings Settings = new TensorFlowPredictionSettings()
         {
@@ -24,11 +26,12 @@ namespace AIApi.Classifier
             Threshold = 0.3f
         };
 
-        public TensorFlowInceptionPrediction(IOptionsSnapshot<AppSettings> settings, IWebHostEnvironment environment)
+        public TensorFlowInceptionPrediction(IOptionsSnapshot<AppSettings> settings, IWebHostEnvironment environment, IHttpClientFactory httpClient)
         {
             _settings = settings.Value;
             _environment = environment;
             _modelSettings = Settings;
+            _httpClient = httpClient;
         }
 
         protected override TFTensor LoadImage(byte[] image)
@@ -50,12 +53,12 @@ namespace AIApi.Classifier
             }
         }
 
-        protected override (TFGraph, string[]) LoadModelAndLabels(string modelFilename, string labelsFilename)
+        protected override async Task<(TFGraph, string[])> LoadModelAndLabelsAsync(string modelFilename, string labelsFilename)
         {
             const string EmptyGraphModelPrefix = "";
 
             var modelsFolder = Path.Combine(_environment.ContentRootPath, _settings.AIModelsPath);
-            DownloadIfModelNotExists(modelsFolder, modelFilename, labelsFilename);
+            await DownloadIfModelNotExists(modelsFolder, modelFilename, labelsFilename);
 
             modelFilename = Path.Combine(modelsFolder, modelFilename);
             if (!File.Exists(modelFilename))
@@ -73,7 +76,7 @@ namespace AIApi.Classifier
             return (model, labels);
         }
 
-        private void DownloadIfModelNotExists(string modelsFolder, string modelFile, string labelsFile)
+        private async Task DownloadIfModelNotExists(string modelsFolder, string modelFile, string labelsFile)
         {
             if (!(File.Exists(Path.Combine(modelsFolder, modelFile)) && File.Exists(Path.Combine(modelsFolder, labelsFile))))
             {
@@ -81,8 +84,11 @@ namespace AIApi.Classifier
                 var zipfile = Path.Combine(modelsFolder, "inception5h.zip");
 
                 Directory.CreateDirectory(modelsFolder);
-                var wc = new WebClient();
-                wc.DownloadFile(url, zipfile);
+
+                var client = _httpClient.CreateClient("ThirdParty");
+                var fileBytes = await client.GetByteArrayAsync(url);
+
+                File.WriteAllBytes(zipfile, fileBytes);
                 ZipFile.ExtractToDirectory(zipfile, modelsFolder);
                 File.Delete(zipfile);
             }

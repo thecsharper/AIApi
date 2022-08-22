@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Options;
 
@@ -47,10 +47,8 @@ namespace AIApi.Classifier
             return normalized[0];
         }
 
-        protected override (TFGraph, string[]) LoadModelAndLabels(string modelFilename, string labelsFilename)
+        protected override async Task<(TFGraph, string[])> LoadModelAndLabelsAsync(string modelFilename, string labelsFilename)
         {
-            const string EmptyGraphModelPrefix = "";
-
             var modelsFolder = Path.Combine(_environment.ContentRootPath, _settings.AIModelsPath);
 
             modelFilename = Path.Combine(modelsFolder, modelFilename);
@@ -58,7 +56,7 @@ namespace AIApi.Classifier
                 throw new ArgumentException("Model file not exists", nameof(modelFilename));
 
             var model = new TFGraph();
-            model.Import(File.ReadAllBytes(modelFilename), EmptyGraphModelPrefix);
+            model.Import(File.ReadAllBytes(modelFilename), "");
 
             labelsFilename = Path.Combine(modelsFolder, labelsFilename);
             if (!File.Exists(labelsFilename))

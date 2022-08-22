@@ -22,13 +22,12 @@ namespace AIApi.Classifier
         /// <returns>labels related to the image</returns>
         public Task<IEnumerable<LabelConfidence>> ClassifyImageAsync(byte[] image)
         {
-            // TODO: new Task
-            return Task.FromResult(Process(image, _modelSettings));
+            return ProcessAsync(image, _modelSettings);
         }
 
-        protected IEnumerable<LabelConfidence> Process(byte[] image, TensorFlowPredictionSettings settings)
+        protected async Task<IEnumerable<LabelConfidence>> ProcessAsync(byte[] image, TensorFlowPredictionSettings settings)
         {
-            var (model, labels) = LoadModelAndLabels(settings.ModelFilename, settings.LabelsFilename);
+            var (model, labels) = await LoadModelAndLabelsAsync(settings.ModelFilename, settings.LabelsFilename);
             var imageTensor = LoadImage(image);
 
             var labelsToReturn = Eval(model, imageTensor, settings.InputTensorName, settings.OutputTensorName, labels)
@@ -37,7 +36,7 @@ namespace AIApi.Classifier
             return labelsToReturn;
         }
 
-        protected abstract (TFGraph, string[]) LoadModelAndLabels(string modelFilename, string labelsFilename);
+        protected abstract Task<(TFGraph, string[])> LoadModelAndLabelsAsync(string modelFilename, string labelsFilename);
         protected abstract TFTensor LoadImage(byte[] image);
         private IEnumerable<LabelConfidence> Eval(TFGraph graph, TFTensor imageTensor, string inputTensorName, string outputTensorName, string[] labels)
         {

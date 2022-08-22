@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Hosting;
@@ -12,13 +13,15 @@ namespace AIApi.Classifier
     {
         private readonly Dictionary<Approaches, IClassifier> models;
         private readonly Approaches defaultModel;
+        private readonly IHttpClientFactory _httpClient;
 
-        public TensorFlowPredictionStrategy(IOptionsSnapshot<AppSettings> settings, IWebHostEnvironment environment)
+        public TensorFlowPredictionStrategy(IOptionsSnapshot<AppSettings> settings, IWebHostEnvironment environment, IHttpClientFactory httpClient)
         {
+            _httpClient = httpClient;
             object parseDefaultModel;
             defaultModel =
                 (Enum.TryParse(typeof(Approaches), settings.Value.TensorFlowPredictionDefaultModel, ignoreCase: true, result: out parseDefaultModel)) ?
-                (Approaches) parseDefaultModel :
+                (Approaches)parseDefaultModel :
                  Approaches.Default;
 
             if (defaultModel == Approaches.Default)
@@ -26,7 +29,7 @@ namespace AIApi.Classifier
 
             models = new Dictionary<Approaches, IClassifier>
             {
-                { Approaches.TensorFlowPreTrained, new TensorFlowInceptionPrediction(settings, environment) },
+                { Approaches.TensorFlowPreTrained, new TensorFlowInceptionPrediction(settings, environment, httpClient) },
                 { Approaches.TensorFlowCustom, new TensorFlowModelPrediction(settings, environment) }
             };
         }
