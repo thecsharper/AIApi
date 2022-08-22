@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Options;
-using System;
+﻿using System;
 using System.IO;
+
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Options;
+
 using TensorFlow;
 
 namespace AIApi.Classifier
@@ -36,15 +38,13 @@ namespace AIApi.Classifier
             var (graph, input, output) = PreprocessNeuralNetwork(224, 224);
 
             // Execute that graph to normalize this one image
-            using (var session = new TFSession(graph))
-            {
-                var normalized = session.Run(
-                         inputs: new[] { input },
-                         inputValues: new[] { tensor },
-                         outputs: new[] { output });
+            using var session = new TFSession(graph);
+            var normalized = session.Run(
+                     inputs: new[] { input },
+                     inputValues: new[] { tensor },
+                     outputs: new[] { output });
 
-                return normalized[0];
-            }
+            return normalized[0];
         }
 
         protected override (TFGraph, string[]) LoadModelAndLabels(string modelFilename, string labelsFilename)

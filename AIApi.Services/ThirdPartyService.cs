@@ -15,7 +15,7 @@ namespace AIApi.Services
             _httpClient = httpClient;
         }
 
-        public Task<ThirdPartyResponse> SendMessage(SmsSendCommand command)
+        public Task<ThirdPartyResponse> SendMessage(ImageClassifierCommand command)
         {
             _httpClient.CreateClient("ThirdParty");
 

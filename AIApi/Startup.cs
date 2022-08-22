@@ -13,7 +13,6 @@ using Polly;
 using AIApi.Events;
 using AIApi.Messages;
 using AIApi.Services;
-using AIApi.CommandHandlers;
 using AIApi.Classifier;
 
 namespace AIApi
@@ -38,9 +37,7 @@ namespace AIApi
 
             services.Configure<AppSettings>(Configuration);
 
-            services.AddSingleton<ISmsRequestService, SmsRequestService>();
             services.AddTransient<IThirdPartyService, ThirdPartyService>();
-            services.AddTransient<ISmsSendCommandHandler, SmsSendCommandHandler>();
             services.AddTransient<ITensorFlowPredictionStrategy, TensorFlowPredictionStrategy>();
 
             RegisterEventBus(services);
@@ -79,7 +76,7 @@ namespace AIApi
         private void ConfigureEventBus(IApplicationBuilder app)
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
-            eventBus.Subscribe<SmsSentEvent, IIntegrationEventHandler<SmsSentEvent>>();
+            eventBus.Subscribe<ImageClassifierEvent, IIntegrationEventHandler<ImageClassifierEvent>>();
         }
 
         private void RegisterEventBus(IServiceCollection services)

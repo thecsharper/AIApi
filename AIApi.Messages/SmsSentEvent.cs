@@ -4,7 +4,7 @@ using AIApi.Events;
 
 namespace AIApi.Messages
 {
-    public record SmsSentEvent : IntegrationEvent
+    public record ImageClassifierEvent : IntegrationEvent
     {
         public string PhoneNumber { get; set; }
         
@@ -12,7 +12,7 @@ namespace AIApi.Messages
 
         public Guid MessageId { get; set; }
 
-        public SmsSentEvent(string phoneNumber, string messageText, Guid messageId)
+        public ImageClassifierEvent(string phoneNumber, string messageText, Guid messageId)
         {
             PhoneNumber = phoneNumber;
             MessageText = messageText;

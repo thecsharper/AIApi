@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AIApi.Infrastructure
 {
@@ -11,6 +9,7 @@ namespace AIApi.Infrastructure
         public static bool IsValidImage(this byte[] image)
         {
             var imageFormat = GetImageFormat(image);
+
             return imageFormat == ImageFormat.jpeg ||
                    imageFormat == ImageFormat.png;
         }
@@ -37,25 +36,39 @@ namespace AIApi.Infrastructure
             var jpeg2 = new byte[] { 255, 216, 255, 225 }; // jpeg canon
 
             if (bmp.SequenceEqual(bytes.Take(bmp.Length)))
+            {
                 return ImageFormat.bmp;
+            }
 
             if (gif.SequenceEqual(bytes.Take(gif.Length)))
-                return ImageFormat.gif;
+            { 
+                return ImageFormat.gif; 
+            }
 
             if (png.SequenceEqual(bytes.Take(png.Length)))
-                return ImageFormat.png;
+            { 
+                return ImageFormat.png; 
+            }
 
             if (tiff.SequenceEqual(bytes.Take(tiff.Length)))
-                return ImageFormat.tiff;
+            { 
+                return ImageFormat.tiff; 
+            }
 
             if (tiff2.SequenceEqual(bytes.Take(tiff2.Length)))
-                return ImageFormat.tiff;
+            {  
+                return ImageFormat.tiff; 
+            }
 
             if (jpeg.SequenceEqual(bytes.Take(jpeg.Length)))
-                return ImageFormat.jpeg;
+            { 
+                return ImageFormat.jpeg; 
+            }
 
             if (jpeg2.SequenceEqual(bytes.Take(jpeg2.Length)))
-                return ImageFormat.jpeg;
+            { 
+                return ImageFormat.jpeg; 
+            }
 
             return ImageFormat.unknown;
         }

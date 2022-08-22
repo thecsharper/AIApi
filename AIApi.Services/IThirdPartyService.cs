@@ -6,6 +6,6 @@ namespace AIApi.Services
 {
     public interface IThirdPartyService
     {
-        public Task<ThirdPartyResponse> SendMessage(SmsSendCommand command);
+        public Task<ThirdPartyResponse> SendMessage(ImageClassifierCommand command);
     }
 }

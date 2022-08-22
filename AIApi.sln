@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIApi.Messages", "AIApi.Mes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIApi.Commands", "AIApi.Commands\AIApi.Commands.csproj", "{89B373E9-A156-4D30-B9CC-6E9844821F99}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIApi.CommandHandlers", "AIApi.CommandHandlers\AIApi.CommandHandlers.csproj", "{0BFE29A2-EF95-4129-836B-806004B9D301}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIApi.Services", "AIApi.Services\AIApi.Services.csproj", "{BEF09910-DB0A-4A0E-99C5-499C56FDB27B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIApi.UnitTests", "AIApi.UnitTests\AIApi.UnitTests.csproj", "{566E7E30-00DB-4FFE-91A9-2707D397F646}"
@@ -54,10 +52,6 @@ Global
 		{89B373E9-A156-4D30-B9CC-6E9844821F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89B373E9-A156-4D30-B9CC-6E9844821F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89B373E9-A156-4D30-B9CC-6E9844821F99}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BFE29A2-EF95-4129-836B-806004B9D301}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BFE29A2-EF95-4129-836B-806004B9D301}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BFE29A2-EF95-4129-836B-806004B9D301}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BFE29A2-EF95-4129-836B-806004B9D301}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BEF09910-DB0A-4A0E-99C5-499C56FDB27B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BEF09910-DB0A-4A0E-99C5-499C56FDB27B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEF09910-DB0A-4A0E-99C5-499C56FDB27B}.Release|Any CPU.ActiveCfg = Release|Any CPU

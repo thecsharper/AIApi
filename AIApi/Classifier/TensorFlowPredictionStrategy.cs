@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Options;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace AIApi.Classifier
 {
@@ -34,12 +36,11 @@ namespace AIApi.Classifier
         /// </summary>
         /// <param name="image">image (jpeg) bytes to be analyzed</param>
         /// <returns>image related labels</returns>
-        public async System.Threading.Tasks.Task<IEnumerable<string>> ClassifyImageAsync(byte[] image)
+        public async Task<IEnumerable<string>> ClassifyImageAsync(byte[] image)
         {
             var classification = await models[defaultModel].ClassifyImageAsync(image);
 
-            return classification.OrderByDescending(c => c.Probability)
-                .Select(c => c.Label);
+            return classification.OrderByDescending(c => c.Probability).Select(c => c.Label);
         }
     }
 }

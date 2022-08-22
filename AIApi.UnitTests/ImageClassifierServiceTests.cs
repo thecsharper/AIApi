@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -17,14 +16,13 @@ namespace AIApi.UnitTests
         [Fact]
         public async Task Sending_message_returns_http_response_ok()
         {
-            var smsId = Guid.NewGuid();
             var httpClientFactory = new Mock<IHttpClientFactory>();
-            var command = new SmsSendCommand(string.Empty, string.Empty, smsId);
+            var command = new ImageClassifierCommand(string.Empty);
 
             var service = new ThirdPartyService(httpClientFactory.Object);
             var result = await service.SendMessage(command);
 
-            result.ResposneStatusCode.Should().Be(HttpStatusCode.OK);
+            result.ResponseStatusCode.Should().Be(HttpStatusCode.OK);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace AIApi.Models
 {
-    public record SmsResponse
+    public record ImageClassifierResponse
     (
         Guid GlobalEventBusId
     );

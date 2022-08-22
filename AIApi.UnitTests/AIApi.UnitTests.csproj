@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AIApi.CommandHandlers\AIApi.CommandHandlers.csproj" />
     <ProjectReference Include="..\AIApi.Commands\AIApi.Commands.csproj" />
     <ProjectReference Include="..\AIApi.Events\AIApi.Events.csproj" />
     <ProjectReference Include="..\AIApi.Messages\AIApi.Messages.csproj" />

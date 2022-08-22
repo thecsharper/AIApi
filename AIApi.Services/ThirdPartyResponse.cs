@@ -4,6 +4,6 @@ namespace AIApi.Services
 {
     public record ThirdPartyResponse
     (
-        HttpStatusCode ResposneStatusCode
+        HttpStatusCode ResponseStatusCode
     );
 }

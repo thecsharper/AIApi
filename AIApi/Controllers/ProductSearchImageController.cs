@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 using AIApi.Events;
 using AIApi.Models;
-
 using AIApi.Classifier;
 using AIApi.Infrastructure;
+
 using Microsoft.Extensions.Logging;
 
 namespace AIApi.Controllers
@@ -28,7 +28,7 @@ namespace AIApi.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(SmsResponse), 200)]
+        [ProducesResponseType(typeof(ImageClassifierResponse), 200)]
         [ProducesResponseType(204)]
         [ProducesResponseType(415)]
         public async Task<IActionResult> ClassifyImage(IFormFile imageFile)
