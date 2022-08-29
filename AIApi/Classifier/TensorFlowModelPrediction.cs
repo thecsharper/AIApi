@@ -52,17 +52,23 @@ namespace AIApi.Classifier
             var modelsFolder = Path.Combine(_environment.ContentRootPath, _settings.AIModelsPath);
 
             modelFilename = Path.Combine(modelsFolder, modelFilename);
+
             if (!File.Exists(modelFilename))
+            {
                 throw new ArgumentException("Model file not exists", nameof(modelFilename));
+            }
 
             var model = new TFGraph();
             model.Import(File.ReadAllBytes(modelFilename), "");
 
             labelsFilename = Path.Combine(modelsFolder, labelsFilename);
+            
             if (!File.Exists(labelsFilename))
+            {
                 throw new ArgumentException("Labels file not exists", nameof(labelsFilename));
+            }
 
-            var labels = File.ReadAllLines(labelsFilename);
+            var labels = await File.ReadAllLinesAsync(labelsFilename);
 
             return (model, labels);
         }
