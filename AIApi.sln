@@ -30,6 +30,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIApi.Frontend", "AIApi.Frontend\AIApi.Frontend.csproj", "{9DD73898-CB15-4ABA-B1B1-CEF616B84AAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,10 @@ Global
 		{DCF3BC23-E1A7-4E15-A6CC-C35D19A8C171}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCF3BC23-E1A7-4E15-A6CC-C35D19A8C171}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCF3BC23-E1A7-4E15-A6CC-C35D19A8C171}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DD73898-CB15-4ABA-B1B1-CEF616B84AAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DD73898-CB15-4ABA-B1B1-CEF616B84AAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DD73898-CB15-4ABA-B1B1-CEF616B84AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DD73898-CB15-4ABA-B1B1-CEF616B84AAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
