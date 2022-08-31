@@ -11,7 +11,8 @@ using AIApi.Commands;
 
 namespace AIApi.UnitTests
 {
-    public class ThirdPartyServiceTests
+    [Trait("Category", "Unit")]
+    public class ImageClassifierServiceTests
     {
         [Fact]
         public async Task Sending_message_returns_http_response_ok()

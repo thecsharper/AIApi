@@ -16,6 +16,7 @@ using AIApi.Classifier;
 
 namespace AIApi.UnitTests
 {
+    [Trait("Category", "Unit")]
     public class ProductSearchImageControllerTests
     {
         private readonly Mock<ILogger<ProductSearchImageController>> _logger;
