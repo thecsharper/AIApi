@@ -31,9 +31,9 @@ namespace AIApi.Controllers
         [ProducesResponseType(typeof(ImageClassifierResponse), 200)]
         [ProducesResponseType(204)]
         [ProducesResponseType(415)]
-        public async Task<IActionResult> ClassifyImage(IFormFile imageFile)
+        public async Task<IActionResult> ClassifyImage(IFormFile files)
         {
-            if (imageFile.Length == 0)
+            if (files.Length == 0)
             {
                 return NoContent();
             }
@@ -41,7 +41,7 @@ namespace AIApi.Controllers
             IEnumerable<string> tags = null;
             using (var image = new MemoryStream())
             {
-                await imageFile.CopyToAsync(image);
+                await files.CopyToAsync(image);
                 var imageData = image.ToArray();
                 if (!imageData.IsValidImage())
                 {

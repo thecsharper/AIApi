@@ -36,12 +36,20 @@ export class Home extends Component {
 
         console.log("Selected file: " + this.state.selectedFile);
 
-        axios.post("https://localhost:44385/upload/UploadFile", formData, {
+
+        // TODO URL should be config item
+        axios.post("https://localhost:44385/ProductSearchImage", formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
                 "Accept": "text/plain",
             },
         })
+          .then(function (response) {
+            console.log(response);
+        })
+          .catch(function (error) {
+            console.log(error);
+          });
     };
 
     handleChange(event) {
