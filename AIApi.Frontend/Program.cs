@@ -1,16 +1,4 @@
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
-                      {
-                          policy.WithOrigins("https://localhost:44422", "http://localhost:44422", "https://localhost:44385")
-                                .AllowAnyHeader()
-                                .AllowAnyMethod();
-                      });
-});
 
 // Add services to the container.
 
@@ -28,8 +16,6 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-app.UseCors(MyAllowSpecificOrigins);
-
 
 app.MapControllerRoute(
     name: "default",
