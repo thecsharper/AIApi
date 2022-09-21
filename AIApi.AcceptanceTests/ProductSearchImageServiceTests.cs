@@ -53,7 +53,7 @@ namespace AIApi.AcceptanceTests
             var content1 = new StreamContent(file1);
             var formData = new MultipartFormDataContent
             {
-                { content1, "imageFile", "empty.jpg" }
+                { content1, "files", "empty.jpg" }
             };
 
             return formData;
