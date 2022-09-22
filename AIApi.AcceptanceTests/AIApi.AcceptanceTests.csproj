@@ -19,4 +19,13 @@
     <ProjectReference Include="..\AIApi\AIApi.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="empty.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="pizza.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

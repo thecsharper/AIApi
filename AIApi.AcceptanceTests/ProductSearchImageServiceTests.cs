@@ -26,7 +26,7 @@ namespace AIApi.AcceptanceTests
             var options = new WebApplicationFactoryClientOptions { AllowAutoRedirect = false };
             var client = _factory.CreateClient(options);
 
-            var payLoad = CreateImagePayload(@"..\..\..\pizza.jpg");
+            var payLoad = CreateImagePayload(@"pizza.jpg");
             var response = await client.PostAsync(url, payLoad);
 
             response.EnsureSuccessStatusCode();
@@ -41,7 +41,7 @@ namespace AIApi.AcceptanceTests
             var options = new WebApplicationFactoryClientOptions { AllowAutoRedirect = false };
             var client = _factory.CreateClient(options);
 
-            var payLoad = CreateImagePayload(@"..\..\..\empty.jpg");
+            var payLoad = CreateImagePayload(@"empty.jpg");
             var response = await client.PostAsync(url, payLoad);
 
             response.StatusCode.Should().Be(HttpStatusCode.NoContent);
