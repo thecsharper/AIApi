@@ -49,11 +49,11 @@ namespace AIApi.AcceptanceTests
 
         private MultipartFormDataContent CreateImagePayload(string image)
         {
-            var file1 = File.OpenRead(image);
-            var content1 = new StreamContent(file1);
+            var file = File.OpenRead(image);
+            var content = new StreamContent(file);
             var formData = new MultipartFormDataContent
             {
-                { content1, "files", "empty.jpg" }
+                { content, "files", "empty.jpg" }
             };
 
             return formData;
