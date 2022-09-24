@@ -46,7 +46,6 @@ namespace AIApi.Classifier
             // Create an input layer to feed (tensor) image, 
             // fetch label in output layer
             var input = graph[inputTensorName][0];
-
             var output = graph[outputTensorName][0];
 
             runner.AddInput(input, imageTensor).Fetch(output);
