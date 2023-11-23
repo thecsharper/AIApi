@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Options;
 
-using TensorFlow;
+using Tensorflow;
 
 namespace AIApi.Classifier
 {
@@ -33,9 +33,9 @@ namespace AIApi.Classifier
             _httpClient = httpClient;
         }
 
-        protected override TFTensor LoadImage(byte[] image)
+        protected override Tensor LoadImage(byte[] image)
         {
-            var tensor = TFTensor.CreateString(image);
+            var tensor = Tensor.CreateString(image);
 
             // Construct a graph to normalize the image
             var (graph, input, output) = PreprocessNeuralNetwork();
